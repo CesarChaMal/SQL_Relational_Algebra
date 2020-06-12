@@ -1,5 +1,5 @@
 -- INTERSECCION
--- R n S = R � (R - S)
+-- R ∩ S = R – (R - S)
 
 -- DIFERENCIA
 -- NOT IN
@@ -98,7 +98,4 @@ where
                 select 3
             )
     )
-
-
-
 

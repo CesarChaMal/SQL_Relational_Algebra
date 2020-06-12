@@ -1,118 +1,14 @@
--- INTERSECCION
--- R n S = R � (R - S)
-
--- DIFERENCIA
--- NOT IN
-/*
-select
-      a.c1
-from
-    (
-        select 1 c1
-               union all
-        select 2
-               union all
-        select 3
-               union all
-        select 4    
-    ) a
-where
-     a.c1
-         not in
-        (
-            select 1 as col
-                   union all
-            select 2
-                   union all
-            select 3
-        )        
-
--- LEFT JOIN
-select
-a.cl as 'resultado resta'
-from
-    (
-        select 1 as cl
-               union all
-        select 2
-               union all
-        select 3
-               union all
-        select 4    
-    ) as a
-
-left outer join 
-
-    (
-        select 1 as cl
-               union all
-        select 2
-               union all
-        select 3
-    ) as b    
-on 
-   a.cl = b.cl
-where 
-      b.cl is null
-*/
-
--- R
-select
-      *
-from
-    (
-        select 1 c
-               union all
-        select 2
-               union all
-        select 3
-               union all
-        select 4    
-    ) a
-
-where
-    a.c   
-    not in    
--- (R - S)
-    (
-    select
-          a.c
-    from
-        (
-            select 1 c
-                   union all
-            select 2
-                   union all
-            select 3
-                   union all
-            select 4    
-        ) a
-    where
-         a.c
-             not in
-            (
-                select 1 as c
-                       union all
-                select 2
-                       union all
-                select 3
-            )
-    )
-
-
-
-
 A = R =  select * from A
 B = S =  select * from B
 
 C = A - B
 
 
-T1 ? ? c(R)
-T2 ? ? c ( (S X T1) � R)
-T ? T1 � T2
+T1 ← ΠC(R)
+T2 ← ΠC((S X T1) – R)
+T ← T1 – T2
 
--- T1 ? ? c(R)
+-- T1 ← ΠC(R)
 select
 T1.c
 from
@@ -132,7 +28,7 @@ from
      ) T1                  
            
  
--- T2 ? ? c ( (S X T1) � R)
+-- T2 ← ΠC((S X T1) – R)
 -- (S X T1)
 select
 *
@@ -160,7 +56,7 @@ from
             ) R
      ) T1                  
 
--- ( (S X T1) � R)
+-- ( (S X T1) – R)
 select
 *
 from
@@ -208,7 +104,7 @@ where
      )    
 
 -- DIVISION
--- T ? T1 � T2
+-- T ← T1 – T2
 select
 
 *
